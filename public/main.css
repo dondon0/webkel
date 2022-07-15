@@ -8,6 +8,11 @@ body {
     width: auto;
 }
 
+#map{
+    width:256px;
+    height: 256px;
+}
+
 .bg-img-div {
     /* background-image: url('../images/divbg.png'); */
     background-image: url('https://wallpaperaccess.com/full/90278.jpg'); 

@@ -1,1 +1,4 @@
-console.log("test")
+// console.log("test")
+
+var L= require('leaflet');
+
