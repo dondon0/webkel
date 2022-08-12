@@ -2,23 +2,30 @@ const express= require("express");
 const authController= require('../controllers/auth.js');
 const router= express.Router();
 const mysql=require("mysql");
+var dbjs= require('../db.js');
+var db=dbjs.db
 
 
 router.get('/',(req,res)=>{
-    var k=[];
-    var data={
-        title:'Web Baru Kalurahan Sabdo',
-        konten: 'telah dibuat web baru'
-    }
-
-
-    k.push(data);
-    //k.push(data1);
-    res.render('home',{layout:'index',kons:k });
+    db.query('SELECT * FROM artikel',(err,resu)=>{
+        console.log(resu);
+        if(err){
+            console.log(err);
+        }else{
+            res.render('home',{
+                resu:resu
+            });
+        }
+    })
+    
 });
 
 router.get('/kontak',(req,res)=>{
     res.render('kontak',{layout:'index'});
+});
+
+router.get('/admin',(req,res)=>{
+    res.render('admin',{layout:'index'});
 });
 
 router.get('/pemerintahan',(req,res)=>{
@@ -28,6 +35,12 @@ router.get('/pemerintahan',(req,res)=>{
 router.get('/profil',(req,res)=>{
     res.render('profil',{layout:'index'});
 });
+
+router.get('/inputArtikel',(req,res)=>{
+    
+    res.render('artikelInput',{layout:'index'});
+});
+
 
 
 module.exports=router;
